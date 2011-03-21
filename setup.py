@@ -29,7 +29,7 @@ from distutils.core import setup
 
 setup(
         name = 'linux-metrics',
-        version = '0.1.1',
+        version = '0.1.2',
         description = 'System Metrics/Stats for Linux',
         author = 'Corey Goldberg',
         author_email = 'corey@goldb.org',
