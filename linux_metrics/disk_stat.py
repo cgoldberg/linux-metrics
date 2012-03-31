@@ -67,10 +67,14 @@ def disk_busy(device, sample_duration=1):
             time.sleep(sample_duration)
             content2 = f2.read()
     sep = '%s ' % device
+    found = False
     for line in content1.splitlines():
         if sep in line:
+            found = True
             io_ms1 = line.strip().split(sep)[1].split()[9]
             break
+    if not found:
+        raise DiskError('device not found: %r' % device)
     for line in content2.splitlines():
         if sep in line:
             io_ms2 = line.strip().split(sep)[1].split()[9]
@@ -87,13 +91,17 @@ def disk_reads_writes(device):
     with open('/proc/diskstats') as f:
         content = f.read()
     sep = '%s ' % device
+    found = False
     for line in content.splitlines():
         if sep in line:
+            found = True
             fields = line.strip().split(sep)[1].split()
             num_reads = int(fields[0])
             num_writes = int(fields[4])
-            break             
-    return num_reads, num_writes
+            break
+    if not found:
+        raise DiskError('device not found: %r' % device)
+    return (num_reads, num_writes)
     
     
     
@@ -105,12 +113,16 @@ def disk_reads_writes_persec(device, sample_duration=1):
             time.sleep(sample_duration)
             content2 = f2.read()
     sep = '%s ' % device
+    found = False
     for line in content1.splitlines():
         if sep in line:
+            found = True
             fields = line.strip().split(sep)[1].split()
             num_reads1 = int(fields[0])
             num_writes1 = int(fields[4])
             break
+    if not found:
+        raise DiskError('device not found: %r' % device)
     for line in content2.splitlines():
         if sep in line:
             fields = line.strip().split(sep)[1].split()
@@ -119,8 +131,12 @@ def disk_reads_writes_persec(device, sample_duration=1):
             break            
     reads_per_sec = (num_reads2 - num_reads1) / float(sample_duration)
     writes_per_sec = (num_writes2 - num_writes1) / float(sample_duration)   
-    return reads_per_sec, writes_per_sec
+    return (reads_per_sec, writes_per_sec)
 
+
+
+class DiskError(Exception):
+    pass
 
 
 
