@@ -39,7 +39,7 @@ except ImportError as e:
 
 
 # configuration  
-DISK_DEVICE = 'sda'
+DISK_DEVICE = 'sda1'
 NETWORK_INTERFACE = 'eth1'
 
 
@@ -145,11 +145,10 @@ class TestDiskStats(unittest.TestCase):
         
     def test_invalid_disk_interface(self):
         self.assertRaises(
-            net_stat.DiskError,
-            disk_stat.disk_busy(
-                'invalid_interface',
-                0
-            )
+            disk_stat.DiskError,
+            disk_stat.disk_busy,
+            'invalid_device',
+            0
         )
         
 
@@ -206,10 +205,10 @@ class TestNetworkStats(unittest.TestCase):
 
 if __name__ == '__main__':
     test_cases = [
-        #TestCPUStats, 
+        TestCPUStats, 
         TestDiskStats,
-        #TestMemoryStats,
-        #TestNetworkStats,
+        TestMemoryStats,
+        TestNetworkStats,
     ]
         
     test_suites = [unittest.TestLoader().loadTestsFromTestCase(test_case)
