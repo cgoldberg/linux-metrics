@@ -1,0 +1,4 @@
+*.pyc
+_build
+build
+dist

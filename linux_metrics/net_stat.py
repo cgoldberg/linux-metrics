@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-#  Copyright (c) 2010-2011 Corey Goldberg (http://goldb.org)
+#  Copyright (c) 2010-2012 Corey Goldberg (http://goldb.org)
 #
 #  This file is part of linux-metrics
 #
@@ -25,7 +25,7 @@
     
     requires:
     - Python 2.6+
-    - Linux 2.6.x
+    - Linux 2.6+
     
 """
 
@@ -36,28 +36,13 @@ import subprocess
 
 
 
-def main():
-    rx_bytes, tx_bytes = rx_tx_bytes('eth0')
-    print '%s bytes received' % rx_bytes
-    print '%s bytes sent' % tx_bytes
-    
-    rx_bits, tx_bits = rx_tx_bits('eth0')
-    print '%s bits received' % rx_bits
-    print '%s bits sent' % tx_bits 
-    
-    rx_bytes, tx_bytes = net_stats_ifconfig('eth0')
-    print '%s bytes received' % rx_bytes
-    print '%s bytes sent' % tx_bytes
-    
-    
-
 def rx_tx_bytes(interface):  # by reading /proc
     for line in open('/proc/net/dev'):
         if interface in line:
             data = line.split('%s:' % interface)[1].split()
             rx_bytes, tx_bytes = (int(data[0]), int(data[8]))
             return (rx_bytes, tx_bytes)
-
+    raise NetError('interface not found: %r' % interface)
 
 
 def rx_tx_bits(interface):  # by reading /proc
@@ -65,7 +50,6 @@ def rx_tx_bits(interface):  # by reading /proc
     rx_bits = rx_bytes * 8
     tx_bits = tx_bytes * 8
     return (rx_bits, tx_bits)
-            
             
 
 def net_stats_ifconfig(interface):  # by parsing ifconfig output   
@@ -75,6 +59,22 @@ def net_stats_ifconfig(interface):  # by parsing ifconfig output
     return (rx_bytes, tx_bytes)
          
 
+class NetError(Exception):
+    pass
+
+
 
 if __name__ == '__main__':
-    main()
+    interface = 'eth1'
+
+    rx_bytes, tx_bytes = rx_tx_bytes(interface)
+    print '%s bytes received' % rx_bytes
+    print '%s bytes sent' % tx_bytes
+    
+    rx_bits, tx_bits = rx_tx_bits(interface)
+    print '%s bits received' % rx_bits
+    print '%s bits sent' % tx_bits 
+    
+    rx_bytes, tx_bytes = net_stats_ifconfig(interface)
+    print '%s bytes received' % rx_bytes
+    print '%s bytes sent' % tx_bytes

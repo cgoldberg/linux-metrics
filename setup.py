@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-#  Copyright (c) 2011 Corey Goldberg (http://goldb.org)
+#  Copyright (c) 2011-2012 Corey Goldberg (http://goldb.org)
 #
 #  This file is part of linux-metrics
 #
@@ -29,12 +29,12 @@ from distutils.core import setup
 
 setup(
         name = 'linux-metrics',
-        version = '0.1.2',
+        version = '0.1.3',
         description = 'System Metrics/Stats for Linux',
         author = 'Corey Goldberg',
         author_email = 'corey@goldb.org',
-        url = 'http://linux-metrics.googlecode.com',
-        download_url = 'http://code.google.com/p/linux-metrics/downloads/list',
+        url = 'https://github.com/cgoldberg/linux-metrics',
+        download_url = 'http://pypi.python.org/pypi/linux-metrics',
         packages = ['linux_metrics'],
         platforms = ['Linux'],
         license = 'MIT',

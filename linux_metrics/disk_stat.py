@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-#  Copyright (c) 2010-2011 Corey Goldberg (http://goldb.org)
+#  Copyright (c) 2010-2012 Corey Goldberg (http://goldb.org)
 #
 #  This file is part of linux-metrics
 #
@@ -25,7 +25,7 @@
     
     requires:
     - Python 2.6+
-    - Linux 2.6.x
+    - Linux 2.6+
     
     
     functions:
@@ -40,13 +40,15 @@
         
         import disk_stat
         
-        r, w = disk_stat.disk_reads_writes('sda')
+        interface = 'sda1'
+        
+        r, w = disk_stat.disk_reads_writes(interface)
         print 'reads: %s' % r
         print 'writes: %s' % w
         
-        print 'busy: %s%%' % disk_stat.disk_busy('sda', 5)
+        print 'busy: %s%%' % disk_stat.disk_busy(interface, 5)
         
-        rps, wps = disk_stat.disk_reads_writes_persec('sda', 5)
+        rps, wps = disk_stat.disk_reads_writes_persec(interface, 5)
         print 'reads per sec: %s' % rps
         print 'writes per sec: %s' % wps
     
@@ -122,14 +124,15 @@ def disk_reads_writes_persec(device, sample_duration=1):
 
 
 
-if __name__ == '__main__':  
-    r, w = disk_reads_writes('sda')
+if __name__ == '__main__':
+    interface = 'sda1'
+    
+    r, w = disk_reads_writes(interface)
     print 'reads: %s' % r
     print 'writes: %s' % w
     
-    print 'busy: %s%%' % disk_busy('sda', 5)
+    print 'busy: %s%%' % disk_busy(interface, 3)
     
-    rps, wps = disk_reads_writes_persec('sda', 5)
+    rps, wps = disk_reads_writes_persec(interface, 3)
     print 'reads per sec: %s' % rps
     print 'writes per sec: %s' % wps
-
