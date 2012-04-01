@@ -49,14 +49,20 @@ except ImportError as e:
 
 
 if __name__ == '__main__':
+    # for each module, there is a <module>_tests.py
+    # module containing unittest classes.
+    # they are referrenced and loaded below.
     test_cases = [
         cpu_stat_tests.TestCPUStats, 
         disk_stat_tests.TestDiskStats,
         mem_stat_tests.TestMemoryStats,
         net_stat_tests.TestNetworkStats,
-    ]
-        
-    test_suites = [unittest.TestLoader().loadTestsFromTestCase(test_case)
-        for test_case in test_cases]
+    ]    
+    test_suites = [
+        unittest.TestLoader().loadTestsFromTestCase(test_case)
+            for test_case in test_cases
+        ]
     all_tests = unittest.TestSuite(test_suites)
+    
+    # run the tests
     unittest.TextTestRunner(verbosity=2).run(all_tests)
