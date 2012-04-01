@@ -19,196 +19,41 @@
 #
 
 
-""" unit tests for linux-metrics """
+""" run unit tests for linux-metrics """
 
 
 
 import sys
 import unittest
 
+
+
 try:
     from linux_metrics import cpu_stat
+    from linux_metrics import cpu_stat_tests
+    
     from linux_metrics import disk_stat
+    from linux_metrics import disk_stat_tests
+    
     from linux_metrics import mem_stat
+    from linux_metrics import mem_stat_tests
+    
     from linux_metrics import net_stat
+    from linux_metrics import net_stat_tests
 except ImportError as e:
     print e
     print 'aborting tests'
     sys.exit(1)
-    
 
-
-# configuration  
-DISK_DEVICE = 'sda1'
-NETWORK_INTERFACE = 'eth1'
-
-
-    
-    
-class TestCPUStats(unittest.TestCase):
-    
-    def setUp(self):
-        self.sample_duration = .1  # secs
-        
-    def test_cpu_info(self):
-        values = cpu_stat.cpu_info()
-        self.assertTrue(len(values) > 0, values)
-        
-    def test_cpu_percent_idle(self):
-        value = cpu_stat.cpu_percents(self.sample_duration)['idle']
-        self.assertTrue(0.0 <= value <= 100.0, value)
-    
-    def test_cpu_percent_iowait(self):
-        value = cpu_stat.cpu_percents(self.sample_duration)['iowait']
-        self.assertTrue(0.0 <= value <= 100.0, value)
-    
-    def test_cpu_percent_irq(self):
-        value = cpu_stat.cpu_percents(self.sample_duration)['irq']
-        self.assertTrue(0.0 <= value <= 100.0, value)
-    
-    def test_cpu_percent_nice(self):
-        value = cpu_stat.cpu_percents(self.sample_duration)['nice']
-        self.assertTrue(0.0 <= value <= 100.0, value)
-        
-    def test_cpu_percent_softirq(self):
-        value = cpu_stat.cpu_percents(self.sample_duration)['softirq']
-        self.assertTrue(0.0 <= value <= 100.0, value)
-    
-    def test_cpu_percent_system(self):
-        value = cpu_stat.cpu_percents(self.sample_duration)['system']
-        self.assertTrue(0.0 <= value <= 100.0, value)
-        
-    def test_cpu_percent_user(self):
-        value = cpu_stat.cpu_percents(self.sample_duration)['user']
-        self.assertTrue(0.0 <= value <= 100.0, value)
-    
-    def test_cpu_percents(self):
-        values = cpu_stat.cpu_percents(self.sample_duration)
-        self.assertTrue(len(values) == 7, values)
-        
-    def test_cpu_times(self):
-        values = cpu_stat.cpu_times()
-        self.assertTrue(len(values) >= 7, values)
-        
-    def test_procs_blocked(self):
-        value = cpu_stat.procs_blocked()
-        self.assertTrue(value >= 0, value)
-        
-    def test_procs_running(self):
-        value = cpu_stat.procs_running()
-        self.assertTrue(value >= 0, value)
-        
-    def test_load_avg(self):
-        values = cpu_stat.load_avg()
-        self.assertTrue(len(values) == 3, values)
-        
-    
-
-class TestDiskStats(unittest.TestCase):
-    
-    def setUp(self):
-        self.device = DISK_DEVICE
-        self.sample_duration = .1  # secs
-    
-    def test_disk_busy(self):
-        value = disk_stat.disk_busy(
-            self.device,
-            self.sample_duration
-        )
-        self.assertTrue(0.0 <= value <= 100.0, value)
-        
-    def test_disk_reads(self):
-        value, _ = disk_stat.disk_reads_writes(
-            self.device
-        )
-        self.assertTrue(value >= 0, value)
-    
-    def test_disk_reads_persec(self):
-        value, _ = disk_stat.disk_reads_writes_persec(
-            self.device,
-            self.sample_duration
-        )
-        self.assertTrue(value >= 0.0, value)
-        
-    def test_disk_writes(self):
-        _, value = disk_stat.disk_reads_writes(
-            self.device
-        )
-        self.assertTrue(value >= 0, value)
-        
-    def test_disk_writes_persec(self):
-        _, value = disk_stat.disk_reads_writes_persec(
-            self.device,
-            self.sample_duration
-        )
-        self.assertTrue(value >= 0.0, value)
-        
-    def test_invalid_disk_interface(self):
-        self.assertRaises(
-            disk_stat.DiskError,
-            disk_stat.disk_busy,
-            'invalid_device',
-            0
-        )
-        
-
-
-class TestMemoryStats(unittest.TestCase):
-    
-    def test_mem_used(self):
-        value, _ = mem_stat.mem_stats()
-        self.assertTrue(value > 0, value)
-        
-    def test_mem_total(self):
-        _, value = mem_stat.mem_stats()
-        self.assertTrue(value > 0, value)
-
-
-
-class TestNetworkStats(unittest.TestCase):
-    
-    def setUp(self):
-        self.interface = NETWORK_INTERFACE
-        
-    def test_rx_bytes(self):
-        value, _ = net_stat.rx_tx_bytes(
-            self.interface
-        )
-        self.assertTrue(value >= 0, value)
-        
-    def test_tx_bytes(self):
-        _, value = net_stat.rx_tx_bytes(
-            self.interface
-        )
-        self.assertTrue(value >= 0, value)
-   
-    def test_rx_bits(self):
-        value, _ = net_stat.rx_tx_bits(
-            self.interface
-        )
-        self.assertTrue(value >= 0, value)
-        
-    def test_tx_bits(self):
-        _, value = net_stat.rx_tx_bits(
-            self.interface
-        )
-        self.assertTrue(value >= 0, value)
-    
-    def test_invalid_net_interface(self):
-        self.assertRaises(
-            net_stat.NetError,
-            net_stat.rx_tx_bytes, 
-            'invalid_interface'
-        )
 
 
 
 if __name__ == '__main__':
     test_cases = [
-        TestCPUStats, 
-        TestDiskStats,
-        TestMemoryStats,
-        TestNetworkStats,
+        cpu_stat_tests.TestCPUStats, 
+        disk_stat_tests.TestDiskStats,
+        mem_stat_tests.TestMemoryStats,
+        net_stat_tests.TestNetworkStats,
     ]
         
     test_suites = [unittest.TestLoader().loadTestsFromTestCase(test_case)

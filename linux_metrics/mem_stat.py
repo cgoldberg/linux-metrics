@@ -22,7 +22,6 @@
 """
     mem_stat - Python Module for Memory Stats on Linux
     
-    
     requires:
     - Python 2.6+
     - Linux 2.6+
@@ -30,7 +29,7 @@
 """
 
 
-   
+
 def mem_stats():
     with open('/proc/meminfo') as f:
         for line in f:
@@ -39,12 +38,3 @@ def mem_stats():
             if line.startswith('MemFree:'):
                 mem_used = mem_total - (int(line.split()[1]) * 1024)
     return (mem_used, mem_total)
-    
-    
-
-
-
-if __name__ == '__main__':  
-    print mem_stats()
-    
-
