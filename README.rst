@@ -69,23 +69,23 @@ print CPU utilization every 5 secs::
 API
 ---
 
-* linux_metrics
-  * cpu_stat
-    * cpu_times()
-    * cpu_percents(sample_duration=1)
-    * procs_running()
-    * procs_blocked()
-    * load_avg()
-    * cpu_info()
-  * disk_stat
-    * disk_busy(device, sample_duration=1)
-    * disk_reads_writes(device)
-    * disk_reads_writes_persec(device, sample_duration=1)
-  * mem_stat
-    * mem_stats()
-  * net_stat
-    * rx_tx_bytes(interface)
-    * rx_tx_bits(interface)
+  * linux_metrics
+    * cpu_stat
+      * cpu_times()
+      * cpu_percents(sample_duration=1)
+      * procs_running()
+      * procs_blocked()
+      * load_avg()
+      * cpu_info()
+    * disk_stat
+      * disk_busy(device, sample_duration=1)
+      * disk_reads_writes(device)
+      * disk_reads_writes_persec(device, sample_duration=1)
+    * mem_stat
+      * mem_stats()
+    * net_stat
+      * rx_tx_bytes(interface)
+      * rx_tx_bits(interface)
 
 -------
 Example
