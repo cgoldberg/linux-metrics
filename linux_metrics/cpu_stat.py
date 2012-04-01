@@ -36,42 +36,6 @@
     - load_avg()
     - cpu_info()
     
-    
-    simple example:
-    
-        #!/usr/bin/env python
-        import cpu_stat
-        print cpu_stat.cpu_info()
-    
-    
-    full example:
-    
-        #!/usr/bin/env python
-        
-        import cpu_stat   
-
-        cpu_pcts = cpu_stat.cpu_percents()
-
-        print 'cpu utilization: %.2f%%' % (100 - cpu_pcts['idle']) 
-        
-        print 'cpu mode percents:'
-        pprint.pprint(cpu_pcts)
-
-        print 'cpu times:', cpu_stat.cpu_times()
-        
-        cpu_info = cpu_stat.cpu_info()
-        
-        print 'cpu info:'
-        pprint.pprint(cpu_info)
-        
-        print 'num cores: %s' % cpu_info['cpu cores']
-        
-        print 'procs running: %d' % cpu_stat.procs_running()
-        
-        print 'procs blocked: %d' % cpu_stat.procs_blocked()    
-        
-        print 'load_avg:', cpu_stat.load_avg()
-    
 """
 
 
@@ -84,7 +48,8 @@ def cpu_times():
 
     each number in the sequence is the amount of time, measured in units 
     of USER_HZ (1/100ths of a second on most architectures), that the system
-    spent in each cpu mode: (user, nice, system, idle, iowait, irq, softirq, [steal], [guest]).
+    spent in each cpu mode: 
+    (user, nice, system, idle, iowait, irq, softirq, [steal], [guest]).
     
     on SMP systems, these are aggregates of all processors/cores.
     """
