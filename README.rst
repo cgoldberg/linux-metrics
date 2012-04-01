@@ -69,6 +69,8 @@ print CPU utilization every 5 secs::
 API
 ---
 
+::
+
   * linux_metrics
     * cpu_stat
       * cpu_times()
