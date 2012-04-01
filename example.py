@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-#  Copyright (c) 2011 Corey Goldberg (http://goldb.org)
+#  Copyright (c) 2011-2012 Corey Goldberg (http://goldb.org)
 #
 #  This file is part of linux-metrics
 #
@@ -22,31 +22,30 @@
 """ example usage of linux-metrics """
 
 
-
-from linux_metrics import cpu_stat, disk_stat, mem_stat, net_stat
+import linux_metrics as lm
 
 
 
 def main():
     
     # cpu
-    print 'procs running: %d' % cpu_stat.procs_running()
-    cpu_pcts = cpu_stat.cpu_percents(sample_duration=1)
+    print 'procs running: %d' % lm.cpu_stat.procs_running()
+    cpu_pcts = lm.cpu_stat.cpu_percents(sample_duration=1)
     print 'cpu utilization: %.2f%%' % (100 - cpu_pcts['idle']) 
     
     # disk
-    print 'disk busy: %s%%' % disk_stat.disk_busy('sda', sample_duration=1)
-    r, w = disk_stat.disk_reads_writes('sda')    
+    print 'disk busy: %s%%' % lm.disk_stat.disk_busy('sda', sample_duration=1)
+    r, w = lm.disk_stat.disk_reads_writes('sda1')    
     print 'disk reads: %s' % r
     print 'disk writes: %s' % w
     
     # memory
-    used, total = mem_stat.mem_stats()
+    used, total = lm.mem_stat.mem_stats()
     print 'mem used: %s' % used
     print 'mem total: %s' % total
 
     # network
-    rx_bits, tx_bits = net_stat.rx_tx_bits('eth0')   
+    rx_bits, tx_bits = lm.net_stat.rx_tx_bits('eth1')   
     print 'net bits received: %s' % rx_bits
     print 'net bits sent: %s' % tx_bits 
 
@@ -54,5 +53,3 @@ def main():
     
 if __name__ == '__main__':   
     main()
-
-
