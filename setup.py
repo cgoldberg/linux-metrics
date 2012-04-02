@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# encoding: utf-8
 #
 #  Copyright (c) 2011-2012 Corey Goldberg (http://goldb.org)
 #

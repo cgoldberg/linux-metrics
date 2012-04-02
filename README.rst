@@ -6,7 +6,7 @@ linux-metrics
 
 *System Metrics/Stats Library for Linux*
 
-* © 2010-2012 `Corey Goldberg <http://goldb.org>`_
+* (c) 2010-2012 `Corey Goldberg <http://goldb.org>`_
 * Dev Home: https://github.com/cgoldberg/linux-metrics
 * PyPI: http://pypi.python.org/pypi/linux-metrics
 * Free Open Source : `MIT License <http://www.opensource.org/licenses/MIT>`_
