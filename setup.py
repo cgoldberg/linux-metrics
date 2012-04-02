@@ -36,7 +36,7 @@ long_desc = '\n%s' % open(os.path.join(this_dir, 'README.rst')).read()
 setup(
         name = 'linux-metrics',
         version = __version__,
-        description = 'linux-metrics - System Metrics/Stats for Linux',
+        description = 'linux-metrics - System Metrics/Stats Library for Linux',
         author = 'Corey Goldberg',
         author_email = 'corey@goldb.org',
         url = 'https://github.com/cgoldberg/linux-metrics',
