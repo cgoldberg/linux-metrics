@@ -1,5 +1,4 @@
 
-
 =============
 linux-metrics
 =============
@@ -105,6 +104,4 @@ Note:  you may need to adjust the configuration of the unit tests to match your 
     DISK_DEVICE = 'sda1'
     
     NETWORK_INTERFACE = 'eth0'
-
-----
 

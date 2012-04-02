@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# encoding: utf-8
 #
 #  Copyright (c) 2011-2012 Corey Goldberg (http://goldb.org)
 #
@@ -24,21 +23,25 @@
 
 
 
-import os
 from distutils.core import setup
 
 from linux_metrics import __version__
+
+with open('README.rst') as f:
+    LONG_DESCRIPTION = f.read()
 
 
 setup(
         name = 'linux-metrics',
         version = __version__,
-        description = 'linux-metrics - System Metrics/Stats Library for Linux',
+        packages = ['linux_metrics'],
+
         author = 'Corey Goldberg',
         author_email = 'corey@goldb.org',
+        description = 'linux-metrics - System Metrics/Stats Library for Linux',
+        long_description = LONG_DESCRIPTION,
         url = 'https://github.com/cgoldberg/linux-metrics',
         download_url = 'http://pypi.python.org/pypi/linux-metrics',
-        packages = ['linux_metrics'],
         platforms = ['Linux'],
         license = 'MIT',
         classifiers = [
