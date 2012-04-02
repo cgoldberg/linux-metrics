@@ -26,13 +26,7 @@ Install from PyPI
 -----------------
 
 * `pip install linux-metrics`
-
---------------
-Manual Install
---------------
-
-* `python setup.py install`
-  
+ 
 ------------
 Requirements
 ------------
