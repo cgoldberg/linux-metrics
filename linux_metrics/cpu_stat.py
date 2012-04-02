@@ -26,16 +26,7 @@
     requires:
     - Python 2.6+
     - Linux 2.6+
-    
-    
-    functions:
-    - cpu_times()
-    - cpu_percents(sample_duration=1)
-    - procs_running()
-    - procs_blocked()
-    - load_avg()
-    - cpu_info()
-    
+
 """
 
 
@@ -166,34 +157,3 @@ def __proc_stat(stat):
         for line in f:
             if line.startswith(stat):
                 return int(line.split()[1])
-                
-                
-
-
-
-if __name__ == '__main__':   
-    import pprint
-
-    cpu_pcts = cpu_percents()
-
-    print 'cpu utilization: %.2f%%' % (100 - cpu_pcts['idle']) 
-    
-    print 'cpu mode percents:'
-    pprint.pprint(cpu_pcts)
-
-    print 'cpu times:', cpu_times()
-    
-    cpu_info = cpu_info()
-    
-    print 'cpu info:'
-    pprint.pprint(cpu_info)
-    
-    print 'num cores: %s' % cpu_info['cpu cores']
-    
-    print 'procs running: %d' % procs_running()
-    
-    print 'procs blocked: %d' % procs_blocked()    
-    
-    print 'load_avg:', load_avg()
-    
-

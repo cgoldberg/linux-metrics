@@ -27,12 +27,6 @@
     - Python 2.6+
     - Linux 2.6+
     
-    
-    functions:
-    - disk_busy(device, sample_duration=1)
-    - disk_reads_writes(device)
-    - disk_reads_writes_persec(device, sample_duration=1)
-        
 """
 
 
@@ -120,16 +114,3 @@ class DiskError(Exception):
     pass
 
 
-
-if __name__ == '__main__':
-    interface = 'sda1'
-    
-    r, w = disk_reads_writes(interface)
-    print 'reads: %s' % r
-    print 'writes: %s' % w
-    
-    print 'busy: %s%%' % disk_busy(interface, 3)
-    
-    rps, wps = disk_reads_writes_persec(interface, 3)
-    print 'reads per sec: %s' % rps
-    print 'writes per sec: %s' % wps

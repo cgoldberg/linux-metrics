@@ -19,9 +19,9 @@ Description
 
 Basic stats for major subsystems are provided (Processor/CPU, Disk, Memory, Network).
 
-----------------------    
+-----------------
 Install from PyPI
-----------------------
+-----------------
 
 * `pip install linux-metrics`
 

@@ -63,18 +63,3 @@ class NetError(Exception):
     pass
 
 
-
-if __name__ == '__main__':
-    interface = 'eth1'
-
-    rx_bytes, tx_bytes = rx_tx_bytes(interface)
-    print '%s bytes received' % rx_bytes
-    print '%s bytes sent' % tx_bytes
-    
-    rx_bits, tx_bits = rx_tx_bits(interface)
-    print '%s bits received' % rx_bits
-    print '%s bits sent' % tx_bits 
-    
-    rx_bytes, tx_bytes = net_stats_ifconfig(interface)
-    print '%s bytes received' % rx_bytes
-    print '%s bytes sent' % tx_bytes
