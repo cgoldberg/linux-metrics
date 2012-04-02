@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>linux-metrics by cgoldberg</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/cgoldberg/linux-metrics">Fork On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/cgoldberg/linux-metrics/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/cgoldberg/linux-metrics/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>linux-metrics</h1>
+          <p>System Metrics/Stats Library for Linux</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/cgoldberg">cgoldberg</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>linux-metrics</h1>
+
+<h2>System Metrics/Stats Library for Linux</h2>
+
+<ul>
+<li>2010-2012 <a href="http://goldb.org">Corey Goldberg</a>
+</li>
+<li>Dev Home: <a href="https://github.com/cgoldberg/linux-metrics">https://github.com/cgoldberg/linux-metrics</a>
+</li>
+<li>PyPI: <a href="http://pypi.python.org/pypi/linux-metrics">http://pypi.python.org/pypi/linux-metrics</a>
+</li>
+<li>Free Open Source : <a href="http://www.opensource.org/licenses/MIT">MIT License</a>
+</li>
+</ul><hr><h3>Description</h3>
+
+<p><code>linux-metrics</code> is a Python package containing modules for getting OS metrics on systems running the Linux kernel.  It is a pure python library with no external dependencies.</p>
+
+<p>Basic stats for major subsystems are provided (Processor/CPU, Disk, Memory, Network).</p>
+
+<h3>Install from PyPI</h3>
+
+<pre><code>pip install linux-metrics
+</code></pre>
+
+<h3>Requirements</h3>
+
+<ul>
+<li>Python 2.6+</li>
+<li>Linux 2.6+</li>
+</ul><h3>Example Usage</h3>
+
+<p>print number of processes running:</p>
+
+<div class="highlight">
+<pre><span class="kn">from</span> <span class="nn">linux_metrics</span> <span class="kn">import</span> <span class="n">cpu_stat</span>
+<span class="k">print</span> <span class="n">cpu_stat</span><span class="o">.</span><span class="n">procs_running</span><span class="p">()</span>
+</pre>
+</div>
+
+
+<p>print CPU utilization every 5 secs:</p>
+
+<div class="highlight">
+<pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">linux_metrics</span> <span class="kn">import</span> <span class="n">cpu_stat</span>
+<span class="o">&gt;&gt;&gt;</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<span class="o">...</span>     <span class="n">cpu_pcts</span> <span class="o">=</span> <span class="n">cpu_stat</span><span class="o">.</span><span class="n">cpu_percents</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="o">...</span>     <span class="k">print</span> <span class="s">'cpu utilization: </span><span class="si">%.2f%%</span><span class="s">'</span> <span class="o">%</span> <span class="p">(</span><span class="mi">100</span> <span class="o">-</span> <span class="n">cpu_pcts</span><span class="p">[</span><span class="s">'idle'</span><span class="p">])</span>
+<span class="o">...</span> 
+<span class="n">cpu</span> <span class="n">utilization</span><span class="p">:</span> <span class="mf">0.70</span><span class="o">%</span>
+<span class="n">cpu</span> <span class="n">utilization</span><span class="p">:</span> <span class="mf">0.50</span><span class="o">%</span>
+<span class="n">cpu</span> <span class="n">utilization</span><span class="p">:</span> <span class="mf">24.80</span><span class="o">%</span>
+<span class="n">cpu</span> <span class="n">utilization</span><span class="p">:</span> <span class="mf">20.89</span><span class="o">%</span>
+<span class="n">cpu</span> <span class="n">utilization</span><span class="p">:</span> <span class="mf">40.04</span><span class="o">%</span>
+</pre>
+</div>
+
+
+<h3>API</h3>
+
+<pre><code>  * linux_metrics
+    * cpu_stat
+      * cpu_times()
+      * cpu_percents(sample_duration=1)
+      * procs_running()
+      * procs_blocked()
+      * load_avg()
+      * cpu_info()
+    * disk_stat
+      * disk_busy(device, sample_duration=1)
+      * disk_reads_writes(device)
+      * disk_reads_writes_persec(device, sample_duration=1)
+    * mem_stat
+      * mem_stats()
+    * net_stat
+      * rx_tx_bytes(interface)
+      * rx_tx_bits(interface)
+</code></pre>
+
+<h3>Example</h3>
+
+<p><code>linux-metrics</code> package contains an example script:</p>
+
+<ul>
+<li><a href="https://github.com/cgoldberg/linux-metrics/blob/master/example.py">example.py</a></li>
+</ul><h3>Unit Tests</h3>
+
+<p>You can run the included unit tests and verify all cases pass in your environment:</p>
+
+<ul>
+<li><a href="https://github.com/cgoldberg/linux-metrics/blob/master/runtests.py">runtests.py</a></li>
+</ul><p>Note:  you may need to adjust the configuration of the unit tests to match your environment.  They are set by default to use:</p>
+
+<pre><code>    DISK_DEVICE = 'sda1'
+
+    NETWORK_INTERFACE = 'eth0'
+</code></pre>
+
+<hr>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  </body>
+</html>
