@@ -23,14 +23,20 @@
 
 
 
+import os
 from distutils.core import setup
 
+from linux_metrics import __version__
+
+
+this_dir = os.path.abspath(os.path.dirname(__file__))
+long_desc = '\n%s' % open(os.path.join(this_dir, 'README.rst')).read()
 
 
 setup(
         name = 'linux-metrics',
-        version = '0.1.3',
-        description = 'System Metrics/Stats for Linux',
+        version = __version__,
+        description = 'linux-metrics - System Metrics/Stats for Linux',
         author = 'Corey Goldberg',
         author_email = 'corey@goldb.org',
         url = 'https://github.com/cgoldberg/linux-metrics',
@@ -45,6 +51,7 @@ setup(
             'Operating System :: POSIX :: Linux',
             'Programming Language :: Python :: 2.6',
             'Programming Language :: Python :: 2.7',
+            'Topic :: Software Development :: Libraries',
             'Topic :: Software Development :: Libraries :: Python Modules',
             'Topic :: System :: Monitoring',
             ]
