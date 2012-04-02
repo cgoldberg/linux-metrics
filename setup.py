@@ -29,10 +29,6 @@ from distutils.core import setup
 from linux_metrics import __version__
 
 
-this_dir = os.path.abspath(os.path.dirname(__file__))
-long_desc = '\n%s' % open(os.path.join(this_dir, 'README.rst')).read()
-
-
 setup(
         name = 'linux-metrics',
         version = __version__,
@@ -51,7 +47,6 @@ setup(
             'Operating System :: POSIX :: Linux',
             'Programming Language :: Python :: 2.6',
             'Programming Language :: Python :: 2.7',
-            'Topic :: Software Development :: Libraries',
             'Topic :: Software Development :: Libraries :: Python Modules',
             'Topic :: System :: Monitoring',
             ]
