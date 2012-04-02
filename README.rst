@@ -102,9 +102,9 @@ Unit Tests
 
 You can run the included unit tests and verify all cases pass in your environment:
 
- * `runtests.py` 
+* `runtests.py` 
 
 Note:  you may need to adjust the configuration of the unit tests to match your environment.  They are set by default to use:
 
- * `DISK_DEVICE = 'sda1'`
- * `NETWORK_INTERFACE = 'eth0'`
+* `DISK_DEVICE = 'sda1'`
+* `NETWORK_INTERFACE = 'eth0'`
