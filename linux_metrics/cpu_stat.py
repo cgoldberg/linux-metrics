@@ -94,6 +94,25 @@ def procs_blocked():
     
 
 
+def file_desc():
+    """Return tuple with the number of allocated file descriptors,
+    allocated free file descriptors, and max allowed open file descriptors.
+    
+    The number of file descriptors in use can be calculated as follows:
+    
+        fd = file_desc()
+        in_use = fd[1] - fd[0]
+    """
+    
+    with open('/proc/sys/fs/file-nr') as f:
+        line = f.readline()
+    
+    fd = [int(x) for x in line.split()]
+    
+    return fd
+
+
+
 def load_avg():
     """Return a sequence of system load averages (1min, 5min, 15min)."""
     
