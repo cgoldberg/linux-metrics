@@ -113,11 +113,14 @@ def cpu_info():
     """
     
     with open('/proc/cpuinfo') as f:
-        cpuinfo = {}
+        cpuinfo = {'processor_count': 0}
         for line in f:
             if ':' in line:
                 fields = line.replace('\t', '').strip().split(': ')
-                if fields[0] not in ('processor', 'core id'):  # core specific items
+                # count processores and filter out core specific items
+                if fields[0] == 'processor':
+                    cpuinfo['processor_count'] += 1
+                elif fields[0] != 'core id':
                     try:
                         cpuinfo[fields[0]] = fields[1]
                     except IndexError:
