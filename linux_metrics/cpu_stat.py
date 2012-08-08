@@ -95,11 +95,7 @@ def procs_blocked():
 
 
 def load_avg():
-    """Return a sequence of system load averages (1min, 5min, 15min).
-    
-    number of jobs in the run queue or waiting for disk I/O 
-    averaged over 1, 5, and 15 minutes
-    """
+    """Return a sequence of system load averages (1min, 5min, 15min)."""
     
     with open('/proc/loadavg') as f:
         line = f.readline()
@@ -111,7 +107,9 @@ def load_avg():
 
 
 def cpu_info():
-    """
+    """Return the logical cpu info. On SMP systems, the values are
+    representing a single processor. The key processor_count has the number
+    of processors.
     """
     
     with open('/proc/cpuinfo') as f:
