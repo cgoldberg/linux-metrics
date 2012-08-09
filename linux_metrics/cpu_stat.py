@@ -101,7 +101,7 @@ def file_desc():
     The number of file descriptors in use can be calculated as follows:
     
         fd = file_desc()
-        in_use = fd[1] - fd[0]
+        in_use = fd[0] - fd[1]
     """
     
     with open('/proc/sys/fs/file-nr') as f:
