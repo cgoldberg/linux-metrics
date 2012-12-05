@@ -85,7 +85,6 @@ def disk_usage(path):
     'free', which are the amount of total, used and free space, in bytes.
     """
     df = os.popen('df -k '+path)
-    #df = df.read()
     df = df.read().split("\n")[1].split()
     return df[1:4] + df[5:] #return (device, size, used, free, precent, mountpoint)
     
