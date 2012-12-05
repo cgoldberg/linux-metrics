@@ -31,7 +31,7 @@
 
 
 import time
-
+import os
 
    
 def disk_busy(device, sample_duration=1):
@@ -77,8 +77,17 @@ def disk_reads_writes(device):
     if not found:
         raise DiskError('device not found: %r' % device)
     return (num_reads, num_writes)
-    
-    
+
+def disk_usage(path):
+    """Return disk usage statistics about the given path.
+	Found at: http://stackoverflow.com/a/7285509/940204
+    Returned valus is a named tuple with attributes 'total', 'used' and
+    'free', which are the amount of total, used and free space, in bytes.
+    """
+    df = os.popen('df -k '+path)
+    #df = df.read()
+    df = df.read().split("\n")[1].split()
+    return df[1:4] + df[5:] #return (device, size, used, free, precent, mountpoint)
     
 def disk_reads_writes_persec(device, sample_duration=1):
     """Return number of disk (reads, writes) per sec during the sample_duration."""
