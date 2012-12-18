@@ -94,12 +94,27 @@ def procs_blocked():
     
 
 
-def load_avg():
-    """Return a sequence of system load averages (1min, 5min, 15min).
+def file_desc():
+    """Return tuple with the number of allocated file descriptors,
+    allocated free file descriptors, and max allowed open file descriptors.
     
-    number of jobs in the run queue or waiting for disk I/O 
-    averaged over 1, 5, and 15 minutes
+    The number of file descriptors in use can be calculated as follows:
+    
+        fd = file_desc()
+        in_use = fd[0] - fd[1]
     """
+    
+    with open('/proc/sys/fs/file-nr') as f:
+        line = f.readline()
+    
+    fd = [int(x) for x in line.split()]
+    
+    return fd
+
+
+
+def load_avg():
+    """Return a sequence of system load averages (1min, 5min, 15min)."""
     
     with open('/proc/loadavg') as f:
         line = f.readline()
@@ -111,15 +126,20 @@ def load_avg():
 
 
 def cpu_info():
-    """
+    """Return the logical cpu info. On SMP systems, the values are
+    representing a single processor. The key processor_count has the number
+    of processors.
     """
     
     with open('/proc/cpuinfo') as f:
-        cpuinfo = {}
+        cpuinfo = {'processor_count': 0}
         for line in f:
             if ':' in line:
                 fields = line.replace('\t', '').strip().split(': ')
-                if fields[0] not in ('processor', 'core id'):  # core specific items
+                # count processores and filter out core specific items
+                if fields[0] == 'processor':
+                    cpuinfo['processor_count'] += 1
+                elif fields[0] != 'core id':
                     try:
                         cpuinfo[fields[0]] = fields[1]
                     except IndexError:
