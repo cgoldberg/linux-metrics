@@ -33,8 +33,14 @@
 def mem_stats():
     with open('/proc/meminfo') as f:
         for line in f:
-            if line.startswith('MemTotal:'):
-                mem_total = int(line.split()[1]) * 1024
-            if line.startswith('MemFree:'):
-                mem_used = mem_total - (int(line.split()[1]) * 1024)
-    return (mem_used, mem_total)
+			if line.startswith('MemTotal:'):
+				mem_total = int(line.split()[1]) * 1024
+			elif line.startswith('MemFree:'):
+				mem_used = mem_total - (int(line.split()[1]) * 1024)
+			elif line.startswith('Cached:'):
+				mem_cached = (int(line.split()[1]) * 1024)
+			elif line.startswith('SwapTotal: '):
+				swap_total = (int(line.split()[1]) * 1024)
+			elif line.startswith('SwapFree: '):
+				swap_used = swap_total - (int(line.split()[1]) * 1024)
+    return (mem_used, mem_total, mem_cached, swap_total, swap_used)

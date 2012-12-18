@@ -74,6 +74,7 @@ API
     * disk_stat
       * disk_busy(device, sample_duration=1)
       * disk_reads_writes(device)
+      * disk_usage(path)
       * disk_reads_writes_persec(device, sample_duration=1)
     * mem_stat
       * mem_stats()
