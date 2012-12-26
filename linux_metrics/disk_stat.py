@@ -86,6 +86,9 @@ def disk_usage(path):
     """
     df = os.popen('df -k '+path)
     df = df.read().split("\n")[1].split()
+    df[1] = int(df[1]) #loop would look cleaner but not needed
+    df[2] = int(df[2])
+    df[3] = int(df[3])
     return df[1:4] + df[5:] #return (device, size, used, free, precent, mountpoint)
     
 def disk_reads_writes_persec(device, sample_duration=1):
