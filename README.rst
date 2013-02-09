@@ -81,6 +81,7 @@ API
     * net_stat
       * rx_tx_bytes(interface)
       * rx_tx_bits(interface)
+      * rx_tx_dump(interface)
 
 -------
 Example
