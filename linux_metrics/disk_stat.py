@@ -32,6 +32,7 @@
 
 import time
 import os
+from subprocess import Popen, PIPE
 
    
 def disk_busy(device, sample_duration=1):
@@ -83,13 +84,12 @@ def disk_usage(path):
 	Found at: http://stackoverflow.com/a/7285509/940204
     Returned valus is a named tuple with attributes 'total', 'used' and
     'free', which are the amount of total, used and free space, in bytes.
-    """
-    df = os.popen('df -k '+path)
-    df = df.read().split("\n")[1].split()
-    df[1] = int(df[1]) #loop would look cleaner but not needed
-    df[2] = int(df[2])
-    df[3] = int(df[3])
-    return df[1:4] + df[5:] #return (device, size, used, free, precent, mountpoint)
+    """    
+	
+    output = Popen(['df', '-k', path], stdout=PIPE).communicate()[0]
+    df = output.splitlines()[1].split()
+    (device, size, used, free, percent, mountpoint) = df
+    return (device, int(size), int(used), int(free), percent, mountpoint)
     
 def disk_reads_writes_persec(device, sample_duration=1):
     """Return number of disk (reads, writes) per sec during the sample_duration."""
