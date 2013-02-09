@@ -51,6 +51,12 @@ def rx_tx_bits(interface):  # by reading /proc
     tx_bits = tx_bytes * 8
     return (rx_bits, tx_bits)
             
+def rx_tx_dump(interface): #get all info
+	for line in open('/proc/net/dev'):
+		if interface in line:
+			data = line.split('%s:' % interface)[1].split()
+			rx, tx = [int(x) for x in data[0:8]], [int(x) for x in data[8:]]
+	return (rx, tx)
 
 def net_stats_ifconfig(interface):  # by parsing ifconfig output   
     output = subprocess.Popen(['ifconfig', interface], stdout=subprocess.PIPE).communicate()[0]
