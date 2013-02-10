@@ -97,7 +97,9 @@ Unit Tests
 
 You can run the included unit tests and verify all cases pass in your environment:
 
-* `runtests.py <https://github.com/cgoldberg/linux-metrics/blob/master/runtests.py>`_
+::
+
+    $ nosetests
 
 Note:  you may need to adjust the configuration of the unit tests to match your environment.  They are set by default to use:
 
