@@ -11,7 +11,7 @@ linux-metrics
 
 ----
 
-https://travis-ci.org/cgoldberg/linux-metrics.png?branch=master
+https://travis-ci.org/cgoldberg/linux-metrics.png
 
 ----
 
