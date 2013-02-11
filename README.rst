@@ -11,7 +11,7 @@ linux-metrics
 
 ----
 
-https://travis-ci.org/cgoldberg/linux-metrics.png
+.. image:: https://travis-ci.org/cgoldberg/linux-metrics.png
 
 ----
 
