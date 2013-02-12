@@ -19,14 +19,13 @@
 #
 
 
-import disk_stat
-import unittest
+from . import disk_stat
 
+import unittest
 
 
 # configuration
 DISK_DEVICE = 'sda1'
-
 
 
 class TestDiskStats(unittest.TestCase):

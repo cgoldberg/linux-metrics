@@ -19,9 +19,9 @@
 #
 
 
-import mem_stat
-import unittest
+from . import mem_stat
 
+import unittest
 
 
 class TestMemoryStats(unittest.TestCase):

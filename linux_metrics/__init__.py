@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-#  Copyright (c) 2010-2012 Corey Goldberg (http://goldb.org)
+#  Copyright (c) 2010-2013 Corey Goldberg (http://goldb.org)
 #
 #  This file is part of linux-metrics
 #
@@ -20,9 +20,10 @@
 
 
 
-import cpu_stat
-import disk_stat
-import mem_stat
-import net_stat
+from .cpu_stat import *
+from .disk_stat import *
+from .mem_stat import *
+from .net_stat import *
+
 
 __version__ = '0.1.4dev'

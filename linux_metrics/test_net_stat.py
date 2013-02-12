@@ -19,14 +19,13 @@
 #
 
 
-import net_stat
-import unittest
+from . import net_stat
 
+import unittest
 
 
 # configuration
 NETWORK_INTERFACE = 'eth0'
-
 
 
 class TestNetworkStats(unittest.TestCase):

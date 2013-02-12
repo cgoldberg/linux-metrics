@@ -19,9 +19,9 @@
 #
 
 
-import cpu_stat
 import unittest
 
+from . import cpu_stat
 
 
 class TestCPUStats(unittest.TestCase):
