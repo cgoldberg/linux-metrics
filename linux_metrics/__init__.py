@@ -26,4 +26,4 @@ from .mem_stat import *
 from .net_stat import *
 
 
-__version__ = '0.1.4dev'
+__version__ = '0.1.4'
