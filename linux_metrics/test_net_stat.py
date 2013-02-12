@@ -33,36 +33,34 @@ class TestNetworkStats(unittest.TestCase):
     
     def setUp(self):
         self.interface = NETWORK_INTERFACE
+
+    def test_rx_tx_bytes(self):
+        rx, tx = net_stat.rx_tx_bytes(
+            self.interface
+        )
+        self.assertTrue(rx >= 0, rx)
+        self.assertTrue(tx >= 0, tx)
+
+    def test_rx_tx_bits(self):
+        rx, tx = net_stat.rx_tx_bits(
+            self.interface
+        )
+        self.assertTrue(rx >= 0, rx)
+        self.assertTrue(tx >= 0, tx)
         
-    def test_rx_bytes(self):
-        value, _ = net_stat.rx_tx_bytes(
+    def test_rx_tx_dump(self):
+        rx, tx = net_stat.rx_tx_bits(
             self.interface
         )
-        self.assertTrue(value >= 0, value)
-        
-    def test_tx_bytes(self):
-        _, value = net_stat.rx_tx_bytes(
-            self.interface
-        )
-        self.assertTrue(value >= 0, value)
-   
-    def test_rx_bits(self):
-        value, _ = net_stat.rx_tx_bits(
-            self.interface
-        )
-        self.assertTrue(value >= 0, value)
-        
-    def test_tx_bits(self):
-        _, value = net_stat.rx_tx_bits(
-            self.interface
-        )
-        self.assertTrue(value >= 0, value)
-    
+        rx, tx = map(int, (rx, tx))
+        self.assertTrue(rx >= 0, rx)
+        self.assertTrue(tx >= 0, tx)
+
     def test_invalid_net_interface(self):
         self.assertRaises(
             net_stat.NetError,
             net_stat.rx_tx_bytes, 
-            'invalid_interface'
+            'eth-BAD'
         )
 
 
