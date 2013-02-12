@@ -32,7 +32,7 @@ Install from PyPI
 Requirements
 ------------
 
-* Python 2.6/2.7
+* Python 2.6/2.7/3.1/3.2/3.3/PyPy
 * Linux 2.6+
 
 -------------

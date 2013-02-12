@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-#  Copyright (c) 2011-2012 Corey Goldberg (http://goldb.org)
+#  Copyright (c) 2011-2013 Corey Goldberg (http://goldb.org)
 #
 #  This file is part of linux-metrics
 #
@@ -40,12 +40,12 @@ def main():
     print 'disk writes: %s' % w
     
     # memory
-    used, total = lm.mem_stat.mem_stats()
+    used, total, _, _, _, _ = lm.mem_stat.mem_stats()
     print 'mem used: %s' % used
     print 'mem total: %s' % total
 
     # network
-    rx_bits, tx_bits = lm.net_stat.rx_tx_bits('eth1')   
+    rx_bits, tx_bits = lm.net_stat.rx_tx_bits('eth0')   
     print 'net bits received: %s' % rx_bits
     print 'net bits sent: %s' % tx_bits 
 
