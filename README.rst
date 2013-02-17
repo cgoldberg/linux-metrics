@@ -9,9 +9,6 @@ linux-metrics
 * PyPI: http://pypi.python.org/pypi/linux-metrics
 * Free Open Source : `MIT License <http://www.opensource.org/licenses/MIT>`_
 
-.. image:: https://travis-ci.org/cgoldberg/linux-metrics.png
-    :target: https://travis-ci.org/cgoldberg/linux-metrics 
-
 ----
 
 -----------
