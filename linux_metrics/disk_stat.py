@@ -57,9 +57,7 @@ def disk_busy(device, sample_duration=1):
             break            
     delta = int(io_ms2) - int(io_ms1)
     total = sample_duration * 1000
-    busy_pct = 100 - (100 * (float(total - delta) / total))
-    return busy_pct
-
+    return 100 * (float(delta) / total)
 
 def disk_reads_writes(device):
     """Return number of disk (reads, writes)."""
