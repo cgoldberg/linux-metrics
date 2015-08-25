@@ -31,7 +31,6 @@
 
 
 import time
-import os
 from subprocess import Popen, PIPE
 
    
@@ -80,8 +79,13 @@ def disk_reads_writes(device):
 def disk_usage(path):
     """Return disk usage statistics about the given path."""    	
     output = Popen(['df', '-k', path], stdout=PIPE).communicate()[0]
-    df = output.splitlines()[1].split()
-    (device, size, used, free, percent, mountpoint) = df
+    try:
+        df = output.splitlines()[2].split()
+        device = output.splitlines()[1]
+        (size, used, free, percent, mountpoint) = df
+    except IndexError:
+        df = output.splitlines()[1].split()
+        (device, size, used, free, percent, mountpoint) = df
     return (device, int(size), int(used), int(free), percent, mountpoint)
 
 
