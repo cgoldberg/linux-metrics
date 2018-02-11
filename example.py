@@ -6,7 +6,7 @@
 #
 #  License :: OSI Approved :: MIT License:
 #      http://www.opensource.org/licenses/mit-license
-# 
+#
 #      Permission is hereby granted, free of charge, to any person obtaining a copy
 #      of this software and associated documentation files (the "Software"), to deal
 #      in the Software without restriction, including without limitation the rights
@@ -27,29 +27,29 @@ import linux_metrics as lm
 
 
 def main():
-    
+
     # cpu
     print 'procs running: %d' % lm.cpu_stat.procs_running()
     cpu_pcts = lm.cpu_stat.cpu_percents(sample_duration=1)
-    print 'cpu utilization: %.2f%%' % (100 - cpu_pcts['idle']) 
-    
+    print 'cpu utilization: %.2f%%' % (100 - cpu_pcts['idle'])
+
     # disk
     print 'disk busy: %s%%' % lm.disk_stat.disk_busy('sda', sample_duration=1)
-    r, w = lm.disk_stat.disk_reads_writes('sda1')    
+    r, w = lm.disk_stat.disk_reads_writes('sda1')
     print 'disk reads: %s' % r
     print 'disk writes: %s' % w
-    
+
     # memory
     used, total, _, _, _, _ = lm.mem_stat.mem_stats()
     print 'mem used: %s' % used
     print 'mem total: %s' % total
 
     # network
-    rx_bits, tx_bits = lm.net_stat.rx_tx_bits('eth0')   
+    rx_bits, tx_bits = lm.net_stat.rx_tx_bits('enp4s0')
     print 'net bits received: %s' % rx_bits
-    print 'net bits sent: %s' % tx_bits 
+    print 'net bits sent: %s' % tx_bits
 
-    
-    
-if __name__ == '__main__':   
+
+
+if __name__ == '__main__':
     main()

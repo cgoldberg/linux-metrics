@@ -6,7 +6,7 @@
 #
 #  License :: OSI Approved :: MIT License:
 #      http://www.opensource.org/licenses/mit-license
-# 
+#
 #      Permission is hereby granted, free of charge, to any person obtaining a copy
 #      of this software and associated documentation files (the "Software"), to deal
 #      in the Software without restriction, including without limitation the rights
@@ -25,11 +25,11 @@ import unittest
 
 
 # configuration
-NETWORK_INTERFACE = 'eth0'
+NETWORK_INTERFACE = 'enp4s0'
 
 
 class TestNetworkStats(unittest.TestCase):
-    
+
     def setUp(self):
         self.interface = NETWORK_INTERFACE
 
@@ -46,7 +46,7 @@ class TestNetworkStats(unittest.TestCase):
         )
         self.assertTrue(rx >= 0, rx)
         self.assertTrue(tx >= 0, tx)
-        
+
     def test_rx_tx_dump(self):
         rx, tx = net_stat.rx_tx_bits(
             self.interface
@@ -58,12 +58,12 @@ class TestNetworkStats(unittest.TestCase):
     def test_invalid_net_interface(self):
         self.assertRaises(
             net_stat.NetError,
-            net_stat.rx_tx_bytes, 
+            net_stat.rx_tx_bytes,
             'eth-BAD'
         )
 
 
 
-if __name__ == '__main__':  
+if __name__ == '__main__':
     test_suite = unittest.TestLoader().loadTestsFromTestCase(TestNetworkStats)
     unittest.TextTestRunner(verbosity=2).run(test_suite)
