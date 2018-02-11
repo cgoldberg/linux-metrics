@@ -6,7 +6,7 @@
 #
 #  License :: OSI Approved :: MIT License:
 #      http://www.opensource.org/licenses/mit-license
-# 
+#
 #      Permission is hereby granted, free of charge, to any person obtaining a copy
 #      of this software and associated documentation files (the "Software"), to deal
 #      in the Software without restriction, including without limitation the rights
@@ -49,13 +49,12 @@ setup(
             'Intended Audience :: System Administrators',
             'License :: OSI Approved :: MIT License',
             'Operating System :: POSIX :: Linux',
-            'Programming Language :: Python :: 2.6',
             'Programming Language :: Python :: 2.7',
-            'Programming Language :: Python :: 3.1',
-            'Programming Language :: Python :: 3.2',
-            'Programming Language :: Python :: 3.3',
+            'Programming Language :: Python :: 3.4',
+            'Programming Language :: Python :: 3.5',
+            'Programming Language :: Python :: 3.6',
             'Topic :: Software Development :: Libraries :: Python Modules',
             'Topic :: System :: Monitoring',
             ]
      )
-     
+
